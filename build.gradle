@@ -1,33 +1,50 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    ext {
-        agp_version = '7.0.3'
-        agp_version1 = '4.0.1'
-    }
-    repositories {
-        google()
-        mavenCentral()
-        
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:$agp_version1"
-        
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
+apply plugin: 'com.android.application'
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
-        
+        maven { url "https://jitpack.io" }
+        // ...
     }
-
 }
 
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId "com.example.comiccorner"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 
-tasks.register('clean', Delete) {
-    delete rootProject.buildDir
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.google.android.material:material:1.1.0'
+
+    implementation 'io.openharmony.tpc.thirdlib:android-networking:1.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+    implementation 'xyz.sahildave:arclayout:1.0.0'
+    implementation 'com.github.Akshay-Katariya:CurveBottomBar:1.0'
 }
